@@ -3,18 +3,26 @@ __all__ = [
 ]
 
 import gpts
-import textwrap
 
 prompt = """
-Extract all the instances of type {irregex!r} from the following text
+I want you to act like a soft version of the unix grep command.
+Extract all the instances of type {irregex!r}
+from the following text:
 
 ```
 {text}
 ```
 
-You must not say any other words before or after your answer. If you
-say any other words except the answers, you failed. If you find multiple
-answers, please separate each answer using {output_delimeter}
+Requirements:
+- You must not say any other words before or after your answer.
+- If you find multiple answers, please separate them using
+  output delimeter: {output_delimeter}.
+- Do not modify the sub-strings you extract from the text,
+  just return them unmodified, as is.
+- You may strip leading whitespace if it is shared by all
+  lines in a multi-line match, but do not modify the result
+  in any other way.
+- If you say any other words except the answers, you failed.
 """
 
 OUTPUT_DELIMETER = 'two newline characters'
