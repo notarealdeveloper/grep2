@@ -14,7 +14,6 @@ from the following text:
 ```
 
 Requirements:
-- You must not say any other words before or after your answer.
 - If you find multiple answers, please separate them using
   output delimeter: {output_delimeter}.
 - Do not modify the sub-strings you extract from the text,
@@ -22,7 +21,9 @@ Requirements:
 - You may strip leading whitespace if it is shared by all
   lines in a multi-line match, but do not modify the result
   in any other way.
-- If you say any other words except the answers, you failed.
+- You must NOT say any other words before or after your answer.
+- If you say ANY other words except the answers, you've failed
+  and I will be very disappointed in you.
 """
 
 OUTPUT_DELIMETER = 'two newline characters'
