@@ -1,5 +1,5 @@
 [project]
-name = "gprep2"
+name = "grep2"
 version = "0.0.1"
 authors = [
     { name="Jason Wilkes", email="notarealdeveloper@gmail.com" },
