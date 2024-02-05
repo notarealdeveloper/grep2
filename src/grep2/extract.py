@@ -1,5 +1,5 @@
 __all__ = [
-    'grep2',
+    'search',
 ]
 
 import gpts
@@ -21,7 +21,7 @@ OUTPUT_DELIMETER = 'two newline characters'
 
 def search(irregex, text, output_delimeter=OUTPUT_DELIMETER):
     """ Search text for an irregular expression. """
-    model = gpts.Mixtrel()
+    model = gpts.Mixtral()
     question = prompt.format(
         irregex=irregex,
         text=text,
