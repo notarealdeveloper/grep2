@@ -6,12 +6,10 @@ import gpts
 
 prompt = """
 I want you to act like a soft version of the unix grep command.
-Extract all the instances of type {irregex!r}
-from the following text:
 
-```
-{text}
-```
+If I tell you to extract all the instances of the type 'fruit'
+from the list ['apple', 'cupcake', 'I like bananas', 'car'],
+then you should return 'apple' and 'banana'.
 
 Requirements:
 - If you find multiple answers, please separate them using
@@ -24,6 +22,20 @@ Requirements:
 - You must NOT say any other words before or after your answer.
 - If you say ANY other words except the answers, you've failed
   and I will be very disappointed in you.
+- If you insist on adding commentary like you LLMs so often do,
+  please prefix each line of commentary with an '@' symbol.
+  I want the output to be machine readable, so I need it to be
+  as easy as possible to remove anything except the answer.
+
+Now, please extract all instances of type:
+
+{irregex!r}
+
+from the following text:
+
+```
+{text}
+```
 """
 
 OUTPUT_DELIMETER = 'two newline characters'
@@ -37,3 +49,5 @@ def search(irregex, text, output_delimeter=OUTPUT_DELIMETER):
         output_delimeter=output_delimeter,
     )
     return model.ask(question)
+
+
