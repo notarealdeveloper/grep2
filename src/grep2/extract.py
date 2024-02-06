@@ -5,28 +5,44 @@ __all__ = [
 import gpts
 
 prompt = """
+COMMAND
 I want you to act like a soft version of the unix grep command.
+Given an irregular expression, I want you to extract the matches.
 
-If I tell you to extract all the instances of the type 'fruit'
-from the list ['apple', 'cupcake', 'I like bananas', 'car'],
-then you should return 'apple' and 'banana'.
+EXAMPLES
+If I tell you to extract all the matches to the irregular
+expression 'fruit' from the text:
 
-Requirements:
-- If you find multiple answers, please separate them using
-  output delimeter: {output_delimeter}.
-- Do not modify the sub-strings you extract from the text,
-  just return them unmodified, as is.
-- You may strip leading whitespace if it is shared by all
-  lines in a multi-line match, but do not modify the result
-  in any other way.
+```
+One apple...
+Three cupcakes?
+I like bananas!
+A big red car.
+```
+
+Then you should return:
+
+```
+['apple', 'banana']
+```
+
+REQUIREMENTS
+
+- The output should be a python list that can be passed to `eval`.
+- Do not modify the sub-strings you extract from the text in any way.
+- You may strip leading whitespace if it is shared by all lines in
+  a multi-line match, but do not modify the results in any other way.
 - You must NOT say any other words before or after your answer.
-- If you say ANY other words except the answers, you've failed
-  and I will be very disappointed in you.
-- If you insist on adding commentary like you LLMs so often do,
-  please prefix each line of commentary with an '@' symbol.
-  I want the output to be machine readable, so I need it to be
-  as easy as possible to remove anything except the answer.
+- If you say ANY other words except the answers, you've failed.
+- If you insist on adding commentary like LLMs often do, prefix
+  each line of commentary with an '@' symbol. I want the output
+  to be machine readable, so I need it to be as easy as possible
+  to remove anything except the answer. In other words, nothing
+  you say aside from the answer will help me at all, and may
+  break my code, so just return me a list of matches.
 
+
+MAIN REQUEST
 Now, please extract all instances of type:
 
 {irregex!r}
